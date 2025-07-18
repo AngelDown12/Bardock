@@ -42,10 +42,10 @@ const defaultMenu = {
  %readmore
 *~•~•~•~•~•~•~•~•~•~•~•~•~•~•~•~•~*
 
-\t\t\tS H A D O W B O T
+\t\t\tB A R D O C K B O T 
 `.trimStart(),
 header: '┣━━━ *〔* *%category* *〕*━━━┫',
-body: '*┃⋗ 🍷* *%cmd*\n',
+body: '*┃⋗ 🔥* *%cmd*\n',
 footer: '┗━━━━━━━━━━━━━━┛\n',
 after: '',
 }
@@ -148,9 +148,9 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
 
-    let pp = 'https://files.catbox.moe/em05p6.mp4'
+    let pp = 'https://files.catbox.moe/gsyptn.mp4'
     await conn.sendMessage(m.chat, {
-  video: { url: 'https://files.catbox.moe/em05p6.mp4' },
+  video: { url: 'https://files.catbox.moe/gsyptn.mp4' },
   caption: text.trim(),
   gifPlayback: true
 }, { quoted: m })
