@@ -1,5 +1,5 @@
 const prefijoABandera = {
-    '1': '🇺🇸', '7': '🇷🇺', '20': '🇪🇬', '27': '🇿🇦', '30': '🇬🇷', '31': '🇳🇱', '32': '🇧🇪', '33': '🇫🇷',
+      '1': '🇺🇸', '7': '🇷🇺', '20': '🇪🇬', '27': '🇿🇦', '30': '🇬🇷', '31': '🇳🇱', '32': '🇧🇪', '33': '🇫🇷',
   '34': '🇪🇸', '36': '🇭🇺', '39': '🇮🇹', '40': '🇷🇴', '41': '🇨🇭', '43': '🇦🇹', '44': '🇬🇧', '45': '🇩🇰',
   '46': '🇸🇪', '47': '🇳🇴', '48': '🇵🇱', '49': '🇩🇪', '51': '🇵🇪', '52': '🇲🇽', '53': '🇨🇺', '54': '🇦🇷',
   '55': '🇧🇷', '56': '🇨🇱', '57': '🇨🇴', '58': '🇻🇪', '60': '🇲🇾', '61': '🇦🇺', '62': '🇮🇩', '63': '🇵🇭',
@@ -37,31 +37,25 @@ const prefijoABandera = {
   '1721': '🇸🇽', '1264': '🇦🇮', '1473': '🇬🇩', '1869': '🇰🇳'
 };
 
-function obtenerBandera(numero) {
+const obtenerBandera = numero => {
   const prefijos = Object.keys(prefijoABandera).sort((a, b) => b.length - a.length);
-  for (const p of prefijos) {
-    if (numero.startsWith(p)) return prefijoABandera[p];
-  }
+  for (const p of prefijos) if (numero.startsWith(p)) return prefijoABandera[p];
   return '🌍';
-}
+};
 
 const handler = async (m, { conn, participants, isAdmin, isOwner }) => {
-  if (!m.isGroup) return;
-  if (!isAdmin && !isOwner) return global.dfail?.('admin', m, conn);
+  if (!m.isGroup || (!isAdmin && !isOwner)) return;
 
-  const total = participants.length;
   let texto = '*!  MENCION GENERAL  !*\n';
-  texto += `*PARA ${total} MIEMBROS* 🗣️\n\n`;
+  texto += `*PARA ${participants.length} MIEMBROS* 🗣️\n\n`;
 
-  for (const user of participants) {
-    const numero = user.id.split('@')[0];
+  for (const u of participants) {
+    const numero = u.id.split('@')[0];
     texto += `${obtenerBandera(numero)} @${numero}\n`;
   }
 
   await conn.sendMessage(m.chat, {
-    video: { url: 'https://files.catbox.moe/gsyptn.mp4' },
-    gifPlayback: true,
-    caption: texto.trim(),
+    text: texto.trim(),
     mentions: participants.map(p => p.id)
   });
 };
