@@ -9,6 +9,6 @@ await conn.sendFile(m.chat, dl_url, 'thumbnail.jpg', null, m)
 }}
 handler.help = ['pinterest <búsqueda>']
 handler.tags = ['img']
-handler.command = ['pinterest'] 
+handler.command = ['pin'] 
 //handler.limit = 1
 export default handler
