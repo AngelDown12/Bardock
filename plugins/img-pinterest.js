@@ -118,6 +118,6 @@ let handler = async (m, { conn, text }) => {
 handler.help = ['pinterest'];
 handler.command = ['pinterest', 'pin'];
 handler.tags = ['buscador'];
-handler.register = true
+handler.register = false
 
 export default handler;
