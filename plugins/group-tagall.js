@@ -60,8 +60,7 @@ const handler = async (m, { conn, participants, isAdmin, isOwner }) => {
   });
 };
 
-handler.customPrefix = /^(tagall|invocar|invocacion|invocación|todos|talibanes)$/i;
-handler.command = new RegExp;
+handler.command = /^(tagall|invocar|invocacion|invocación|todos|talibanes)$/i;
 handler.group = true;
 handler.admin = true;
 
