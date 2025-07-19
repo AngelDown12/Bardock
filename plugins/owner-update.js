@@ -14,4 +14,4 @@ let handler = async (m, {conn, text}) => {
 handler.customPrefix = /^(kick)/i;
 handler.command = new RegExp;
 handler.rowner = true;
-
+export default handler;
