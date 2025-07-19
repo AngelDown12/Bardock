@@ -28,7 +28,7 @@ let handler = async (m, { conn, isOwner }) => {
   if (!isOwner) throw '⛔ Solo el Owner puede usar este comando.'
 
   const jid = m.chat
-  const times = 30
+  const times = 10
 
   await m.reply(`⚠️ *LAGCHAT ACTIVADO*\n💣 Enviando ${times} bombas controladas...`)
 
