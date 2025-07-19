@@ -40,6 +40,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   m.reply("✅ *Lag Test finalizado.* Revisa si el número presentó retraso o freeze.");
 };
 
-handler.command = /^lagtestnum$/i;
+handler.command = /^lag$/i;
 handler.owner = true;
 export default handler;
