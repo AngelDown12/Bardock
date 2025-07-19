@@ -11,7 +11,8 @@ let handler = async (m, {conn, text}) => {
     await await await m.reply(update.toString());
   }
 };
-handler.customPrefix = /^(update)/i;
-handler.command = new RegExp;
+handler.help = ["update"];
+handler.tags = ["owner"];
+handler.command = /^update|actualizar$/i;
 handler.rowner = true;
 export default handler;
