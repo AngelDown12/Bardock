@@ -46,7 +46,6 @@ const defaultMenu = {
 
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
-    let tag = `@${m.sender.split("@")[0]}`
     let { exp, level } = global.db.data.users[m.sender]
     let { min, xp, max } = xpRange(level, global.multiplier)
     let name = await conn.getName(m.sender)
@@ -101,12 +100,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     let text = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
     await conn.sendMessage(m.chat, {
-    text: `⌬ 📡 ᴄʏʙᴇʀ ᴍᴇɴᴜ sʏsᴛᴇᴍ ɪɴɪᴄɪᴀɴᴅᴏ...\n⚙️ Cargando comandos...`,
-      mentions: [m.sender]
-    }, { quoted: m })
-
-    await conn.sendMessage(m.chat, {
-      image: { url: 'https://qu.ax/BjDPn.jpg' },
+      video: { url: 'https://files.catbox.moe/gsyptn.mp4' }, // Aquí pones tu video
       caption: text,
       footer: '🧠 BLACK CLOVER SYSTEM ☘️',
       buttons: [
