@@ -466,7 +466,7 @@ console.error(e)
 global.dfail = (type, m, conn, usedPrefix) => {
         let msg = {
         rowner: "🚫𝐄𝐬𝐭𝐞 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐬𝐨𝐥𝐨 𝐄𝐬 𝐏𝐚𝐫𝐚 𝐂𝐫𝐢𝐬𝐭𝐢𝐚𝐧 𝐌𝐢 𝐂𝐫𝐞𝐚𝐝𝐨𝐫.",
-        owner: "😴𝐄𝐬𝐭𝐞 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐬𝐨𝐥𝐨 𝐄𝐬 𝐏𝐚𝐫𝐚 𝐂𝐫𝐢𝐬𝐭𝐢𝐚𝐧 𝐌𝐢 𝐂𝐫𝐞𝐚𝐝𝐨𝐫.",
+        owner: "```¡¡ ESTE COMANDO SOLO ES PARA (CRISTIAN) MI CREADOR```",
         mods: "🪡𝐄𝐬𝐭𝐞 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐬𝐨𝐥𝐨 𝐄𝐬 𝐏𝐚𝐫𝐚 𝐂𝐫𝐢𝐬𝐭𝐢𝐚𝐧 𝐌𝐢 𝐂𝐫𝐞𝐚𝐝𝐨𝐫.",
         premium: "🔑𝐍𝐨 𝐄𝐫𝐞𝐬 𝐮𝐬𝐮𝐚𝐫𝐢𝐨 𝐏𝐫𝐞𝐦𝐢𝐮𝐦.",
         group: "𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐕𝐚𝐥𝐢𝐝𝐨 𝐒𝐨𝐥𝐨 𝐩𝐚𝐫𝐚 𝐆𝐫𝐮𝐩𝐨𝐬.",
