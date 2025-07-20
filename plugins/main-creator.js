@@ -1,6 +1,6 @@
 import PhoneNumber from 'awesome-phonenumber'
 
-let handler = async (m, { conn, usedPrefix }) => {
+let handler = async (m, { conn }) => {
   if (m.quoted?.fromMe || m.isButton) return // evita doble respuesta
 
   m.react('🍷')
@@ -42,8 +42,6 @@ END:VCARD`.trim()
       },
       contextInfo: {
         mentionedJid: [m.sender],
-        isForwarded: true,
-        forwardingScore: 999,
         externalAdReply: {
           title: '🍷 𝐒𝐡𝐚𝐝𝐨𝐰 𝐁𝐨𝐭 🍷',
           body: 'Cristian',
@@ -61,6 +59,6 @@ END:VCARD`.trim()
 
 handler.help = ['owner']
 handler.tags = ['owner']
-handler.command = /^\.owner$/i
+handler.command = /^\.owner$/i // IMPORTANTE: debe incluir el punto si usas prefijo '.'
 handler.register = false
 export default handler
