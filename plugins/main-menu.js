@@ -54,60 +54,60 @@ let muptime = clockString(_uptime)
 let totalreg = Object.keys(global.db.data.users).length
 let mode = global.opts["self"] ? "Privado" : "Público"
 
-let help = Object.values(global.plugins).filter(p => !p.disabled).map(p => ({
-help: Array.isArray(p.help) ? p.help : [p.help],
-tags: Array.isArray(p.tags) ? p.tags : [p.tags],
-prefix: 'customPrefix' in p,
-limit: p.limit,
-premium: p.premium,
-enabled: !p.disabled,
-}))
+let help = Object.values(global.plugins).filter(p => !p.disabled).map(p => ({  
+  help: Array.isArray(p.help) ? p.help : [p.help],  
+  tags: Array.isArray(p.tags) ? p.tags : [p.tags],  
+  prefix: 'customPrefix' in p,  
+  limit: p.limit,  
+  premium: p.premium,  
+  enabled: !p.disabled,  
+}))  
 
-for (let plugin of help) {
-if (plugin.tags) {
-for (let t of plugin.tags) {
-if (!(t in tags) && t) tags[t] = textCyberpunk(t)
-}
-}
-}
+for (let plugin of help) {  
+  if (plugin.tags) {  
+    for (let t of plugin.tags) {  
+      if (!(t in tags) && t) tags[t] = textCyberpunk(t)  
+    }  
+  }  
+}  
 
-const { before, header, body, footer, after } = defaultMenu
+const { before, header, body, footer, after } = defaultMenu  
 
-let _text = [
-before,
-...Object.keys(tags).map(tag => {
-const cmds = help
-.filter(menu => menu.tags.includes(tag))
-.map(menu => menu.help.map(cmd => body.replace(/%cmd/g, menu.prefix ? cmd : _p + cmd)).join('\n'))
-.join('\n')
-return ${header.replace(/%category/g, tags[tag])}\n${cmds}\n${footer}
-}),
-after
-].join('\n')
+let _text = [  
+  before,  
+  ...Object.keys(tags).map(tag => {  
+    const cmds = help  
+      .filter(menu => menu.tags.includes(tag))  
+      .map(menu => menu.help.map(cmd => body.replace(/%cmd/g, menu.prefix ? cmd : _p + cmd)).join('\n'))  
+      .join('\n')  
+    return `${header.replace(/%category/g, tags[tag])}\n${cmds}\n${footer}`  
+  }),  
+  after  
+].join('\n')  
 
-let replace = {
-'%': '%',
-name,
-level,
-exp: exp - min,
-maxexp: xp,
-totalreg,
-mode,
-muptime,
-readmore: String.fromCharCode(8206).repeat(4001)
-}
+let replace = {  
+  '%': '%',  
+  name,  
+  level,  
+  exp: exp - min,  
+  maxexp: xp,  
+  totalreg,  
+  mode,  
+  muptime,  
+  readmore: String.fromCharCode(8206).repeat(4001)  
+}  
 
-let text = text.replace(/%(\w+)/g, (, key) => replace[key] || '')
+let text = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')  
 
-await conn.sendMessage(m.chat, {
-video: { url: 'https://files.catbox.moe/gsyptn.mp4' },
-caption: text,
-footer: '🧠 BLACK CLOVER SYSTEM ☘️',
-buttons: [
-{ buttonId: 'menurpg', buttonText: { displayText: '🏛️ M E N U R P G' }, type: 1 },
-{ buttonId: '.code', buttonText: { displayText: '🕹 ＳＥＲＢＯＴ' }, type: 1 }
-],
-viewOnce: true
+await conn.sendMessage(m.chat, {  
+  video: { url: 'https://files.catbox.moe/gsyptn.mp4' },  
+  caption: text,  
+  footer: '🧠 BLACK CLOVER SYSTEM ☘️',  
+  buttons: [  
+    { buttonId: 'menurpg', buttonText: { displayText: '🏛️ M E N U R P G' }, type: 1 },  
+    { buttonId: '.code', buttonText: { displayText: '🕹 ＳＥＲＢＯＴ' }, type: 1 }  
+  ],  
+  viewOnce: true  
 }, { quoted: m })
 
 } catch (e) {
