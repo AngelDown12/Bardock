@@ -152,7 +152,12 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     await conn.sendMessage(m.chat, {
   video: { url: 'https://files.catbox.moe/gsyptn.mp4' },
   caption: text.trim(),
-  gifPlayback: true
+  gifPlayback: true,
+  buttons: [
+    { buttonId: '.owner', buttonText: { displayText: '👑 Owner' }, type: 1 },
+    { buttonId: '.comprar', buttonText: { displayText: '💰 Comprar Bot' }, type: 1 }
+  ],
+  footer: '🍷 Shadow Bot - Menú Interactivo'
 }, { quoted: m })
 
   } catch (e) {
