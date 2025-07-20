@@ -105,7 +105,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       footer: '🧠 BLACK CLOVER SYSTEM ☘️',
       buttons: [
         { buttonId: 'menurpg', buttonText: { displayText: '🏛️ M E N U R P G' }, type: 1 },
-        { buttonId: 'code', buttonText: { displayText: '🕹 ＳＥＲＢＯＴ' }, type: 1 }
+        { buttonId: '.code', buttonText: { displayText: '🕹 ＳＥＲＢＯＴ' }, type: 1 }
       ],
       viewOnce: true
     }, { quoted: m })
