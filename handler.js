@@ -482,14 +482,15 @@ global.dfail = (type, m, conn, usedPrefix) => {
     contextInfo: {
       externalAdReply: {
         title: '𝐌𝐚𝐮 𝐁𝐨𝐭 🕷️',
-        body: '𝐌𝐚𝐮 𝐁𝐨𝐭 🕷️',
+        body: '𝐄𝐬 𝐭𝐞 𝐜𝐨𝐦𝐚𝐧𝐝𝐨 𝐞𝐬 𝐫𝐞𝐬𝐭𝐫𝐢𝐧𝐠𝐢𝐝𝐨',
         mediaType: 1,
-        thumbnailUrl: 'https://qu.ax/SeOXm.jpg',
+        showAdAttribution: false,
         renderLargerThumbnail: true,
-        sourceUrl: '' // Puedes poner un enlace aquí si quieres
+        thumbnail: await (await fetch('https://qu.ax/SeOXm.jpg')).buffer(),
+        sourceUrl: 'https://www.youtube.com/@MauBot'
       }
     }
-  }, { quoted: m }) // Esto es importante para que el mensaje se envíe como respuesta
+  }, { quoted: m })
   return
 }
 
