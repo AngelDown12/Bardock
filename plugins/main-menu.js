@@ -1,51 +1,9 @@
-import { xpRange } from '../lib/levelling.js'
-
-const textCyberpunk = (text) => {
-  const charset = {
-    a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ꜰ', g: 'ɢ',
-    h: 'ʜ', i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ',
-    o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 'ꜱ', t: 'ᴛ', u: 'ᴜ',
-    v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ'
-  }
-  return text.toLowerCase().split('').map(c => charset[c] || c).join('')
-}
-
-let tags = {
-  'main': textCyberpunk('sistema'),
-  'group': textCyberpunk('grupos'),
-  'serbot': textCyberpunk('sub bots'),
-}
-
-const defaultMenu = {
-  before: `⚠️ 𝗔𝗟𝗘𝗥𝗧𝗔 𝗗𝗘 𝗦𝗜𝗦𝗧𝗘𝗠𝗔 ⚠️ 
-┃ ⛧ 𝙸𝙽𝙸𝙲𝙸𝙰𝙽𝙳𝙾: 𝙱𝙻𝙲-𝚂𝚈𝚂.exe
-┃ ⛧ 𝚄𝚂𝚄𝙰𝚁𝙸𝙾: %name
-┃ ⛧ 𝙼𝙾𝙳𝙾: %mode
-┃ ⛧ 𝙴𝚂𝚃𝙰𝙳𝙾:  𝗢𝗡𝗟𝗜𝗡𝗘 👻
-╚══⫷🔻𝙽𝙴𝚃𝚁𝚄𝙽𝙽𝙴𝚁🔻⫸══╝
-
-╭─[𝗘𝗦𝗧𝗔𝗗𝗢 𝗗𝗘 𝗨𝗦𝗨𝗔𝗥𝗜𝗢]─╮
-│ 📊 𝗡𝗜𝗩𝗘𝗟: %level
-│ ⚡ 𝗘𝗫𝗣: %exp / %maxexp
-│ 🧮 𝗨𝗦𝗨𝗔𝗥𝗜𝗢𝗦: %totalreg
-│ ⏱ 𝗧𝗜𝗘𝗠𝗣𝗢 𝗔𝗖𝗧𝗜𝗩𝗢: %muptime
-╰──────────────────╯
-
-🧬 *𝗡𝗢𝗗𝗢 𝗛𝗔𝗖𝗞 𝗔𝗖𝗧𝗜𝗩𝗔𝗗𝗢*
-✦ Elige un comando para ejecutar protocolo.
-✦ Operador: *The Carlos 👑*
-
-%readmore
-`.trimStart(),
-
-  header: '\n╭─〔 🦠 %category 〕─╮',
-  body: '│ ⚙️ %cmd\n',
-  footer: '╰────────────────╯',
-  after: '\n⌬ 𝗖𝗬𝗕𝗘𝗥 𝗠𝗘𝗡𝗨 ☠️ - Sistema ejecutado con éxito.'
-}
 
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
+    // ✅ evita responder dos veces si es respuesta a un botón ya enviado
+    if (m?.isButton || m?.quoted?.fromMe) return
+
     let { exp, level } = global.db.data.users[m.sender]
     let { min, xp, max } = xpRange(level, global.multiplier)
     let name = await conn.getName(m.sender)
@@ -104,8 +62,8 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       caption: text,
       footer: '🧠 BLACK CLOVER SYSTEM ☘️',
       buttons: [
-        { buttonId: 'menurpg', buttonText: { displayText: '🏛️ M E N U R P G' }, type: 1 },
-        { buttonId: '.code', buttonText: { displayText: '🕹 ＳＥＲＢＯＴ' }, type: 1 }
+        { buttonId: `${_p}menurpg`, buttonText: { displayText: '🏛️ M E N U R P G' }, type: 1 },
+        { buttonId: `${_p}code`, buttonText: { displayText: '🕹 ＳＥＲＢＯＴ' }, type: 1 }
       ],
       viewOnce: true
     }, { quoted: m })
