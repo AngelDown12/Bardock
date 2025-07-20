@@ -1,68 +1,21 @@
 import fetch from 'node-fetch'
 
 export async function before(m, { conn }) {
-//let img = await (await fetch(`https://files.catbox.moe/wwa311.jpg`)).buffer()
-let img = catalogo
- global.fake = {
+  // Carga la miniatura desde una URL externa
+  let img = await (await fetch('https://files.catbox.moe/wwa311.jpg')).buffer()
+
+  // Tarjeta visual sin mostrar canal, solo ícono y enlace
+  global.adReply = {
     contextInfo: {
-            isForwarded: true,
-    forwardedNewsletterMessageInfo: {
-      newsletterJid: "120363420167775602@newsletter",
-      serverMessageId: 100,
-      newsletterName: '𝐁𝐚𝐫𝐝𝐨𝐜𝐤 𝐁𝐨𝐭 🔥',
-    },
-            externalAdReply: {
-                                    showAdAttribution: true,
-                                        title: botname,
-                                        body: 'Hola',
-                                        mediaUrl: null,
-                                        description: null,
-                                        previewType: "PHOTO",
-                                        thumbnailUrl: 'https://files.catbox.moe/wwa311.jpg',
-                           sourceUrl: canal,
-                           mediaType: 1,
-                   renderLargerThumbnail: false
-            },
-    },
+      externalAdReply: {
+        showAdAttribution: true, // muestra como sugerencia
+        title: '𝐁𝐚𝐫𝐝𝐨𝐜𝐤 𝐁𝐨𝐭 🔥', // título grande
+        body: 'Sígueme en Instagram 😼', // texto pequeño
+        mediaType: 1, // tipo de media
+        thumbnail: img, // imagen miniatura (buffer)
+        renderLargerThumbnail: true, // imagen grande
+        sourceUrl: 'https://www.instagram.com/baki_hm66?igsh=cHk1eW1uZXF2ZWsy' // ENLACE al tocar
+      }
+    }
   }
-
- global.adReply = {
-            contextInfo: { 
-             forwardingScore: 9999, 
-                 isForwarded: false, 
-                    externalAdReply: {
-                                    showAdAttribution: true,
-                                        title: botname,
-                                        body: textbot,
-                                        mediaUrl: null,
-                                        description: null,
-                                        previewType: "PHOTO",
-                                        thumbnailUrl: img,
-                    thumbnail: img,
-                           sourceUrl: canal,
-                           mediaType: 1,
-                   renderLargerThumbnail: true
-                                }
-                        }
-                }
-
-global.rcanal = {
-contextInfo: {
-isForwarded: true,
-forwardedNewsletterMessageInfo: {
-newsletterJid: "120363420167775602@newsletter",
-serverMessageId: 100,
-newsletterName: '𝐁𝐚𝐫𝐝𝐨𝐜𝐤 𝐁𝐨𝐭 🔥',
-},
-externalAdReply: { 
-showAdAttribution: true,
-title: '𝐁𝐚𝐫𝐝𝐨𝐜𝐤 𝐁𝐨𝐭 🔥',
-body: '𝐂𝐫𝐢𝐬𝐭𝐢𝐚𝐧 🕷️',
-previewType: "PHOTO",
-thumbnailUrl: 'https://files.catbox.moe/wwa311.jpg',
-sourceUrl: 'https://www.instagram.com/baki_hm66?igsh=cHk1eW1uZXF2ZWsy',
-mediaType: 1,
-renderLargerThumbnail: false
-},},}
-
 }
