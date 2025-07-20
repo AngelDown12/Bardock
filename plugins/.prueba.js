@@ -1,22 +1,11 @@
-let handler = async (m, { conn }) => {
-  const texto = `🍷 𝗛𝗢𝗟𝗔, 𝗘𝗦𝗧𝗘 𝗘𝗦 𝗨𝗡 𝗘𝗝𝗘𝗠𝗣𝗟𝗢 𝗖𝗢𝗡 𝗕𝗢𝗧𝗢𝗡𝗘𝗦
-𝘀𝗲𝗹𝗲𝗰𝗰𝗶𝗼𝗻𝗮 𝘂𝗻𝗮 𝗼𝗽𝗰𝗶𝗼́𝗻:`;
+let handler = async (m) => {
+  if (m.quoted?.fromMe) return;
 
-  const botones = [
-    { buttonId: '.estado', buttonText: { displayText: '📶 Estado del Bot' }, type: 1 },
-    { buttonId: '.owner', buttonText: { displayText: '👑 Creador' }, type: 1 },
-    { buttonId: '.menu', buttonText: { displayText: '📜 Menú Completo' }, type: 1 }
-  ];
+  await m.reply(`💰 *¿Quieres tu propio bot como este?*
 
-  const buttonMessage = {
-    text: texto,
-    footer: '🌟 Shadow Bot 🍷',
-    buttons: botones,
-    headerType: 1
-  };
-
-  await conn.sendMessage(m.chat, buttonMessage, { quoted: m });
+📌 *Para comprarme háblale a mi creador:*
+👉 wa.me/5217227584934`);
 };
 
-handler.command = ['botones', 'menuinteractivo']; // puedes cambiar esto
+handler.command = ['comprar'];
 export default handler;
