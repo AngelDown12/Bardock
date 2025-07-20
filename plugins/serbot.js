@@ -447,7 +447,7 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
 
 handler.help = ["serbot", "serbot --code", "code"];
 handler.tags = ["serbot"];
-handler.command = ["jadibot", "serbot", "code"];
+handler.command = ["code"];
 
 export default handler;
 
