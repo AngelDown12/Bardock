@@ -161,7 +161,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   }
 }
 
-handler.customPrefix = /^(menu|menú|ayuda|help)$/i;
+handler.customPrefix = /^(menu_botones||ayuda|help)$/i;
 handler.command = new RegExp; // para que funcione sin prefijo
 handler.register = false;
 
