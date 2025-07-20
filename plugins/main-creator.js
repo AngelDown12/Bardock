@@ -1,15 +1,17 @@
-import PhoneNumber from 'awesome-phonenumber';
+import PhoneNumber from 'awesome-phonenumber'
 
 let handler = async (m, { conn }) => {
-  m.react('🍷');
+  if (m.quoted?.fromMe || m.isButton) return // evita doble ejecución si viene de botón
 
-  const imageUrl = 'https://files.catbox.moe/iydxk1.jpg';
-  const numCreador = '5215565238431';
-  const ownerJid = numCreador + '@s.whatsapp.net';
-  const name = await conn.getName(ownerJid) || 'Alee';
-  const about = (await conn.fetchStatus(ownerJid).catch(() => {}))?.status || `𝐒𝐨𝐲 𝐂𝐫𝐢𝐬𝐭𝐢𝐚𝐧, 𝐃𝐮𝐞𝐧̃𝐨 𝐝𝐞𝐥 𝐁𝐨𝐭 𝐒𝐡𝐚𝐝𝐨𝐰 𝐁𝐨𝐭 🍷.`;
-  const empresa = '𝐂𝐫𝐢𝐬𝐭𝐢𝐚𝐧 - 𝐒𝐞𝐫𝐯𝐢𝐜𝐢𝐨𝐬 𝐭𝐞𝐜𝐧𝐨𝐥𝐨𝐠𝐢𝐜𝐨𝐬';
-  const instagramUrl = 'https://www.instagram.com/bki_hm66';
+  m.react('🍷')
+
+  const imageUrl = 'https://files.catbox.moe/iydxk1.jpg'
+  const numCreador = '5215565238431'
+  const ownerJid = numCreador + '@s.whatsapp.net'
+  const name = await conn.getName(ownerJid) || 'Alee'
+  const about = (await conn.fetchStatus(ownerJid).catch(() => {}))?.status || `𝐒𝐨𝐲 𝐂𝐫𝐢𝐬𝐭𝐢𝐚𝐧, 𝐃𝐮𝐞𝐧̃𝐨 𝐝𝐞𝐥 𝐒𝐡𝐚𝐝𝐨𝐰 𝐁𝐨𝐭 🍷`
+  const empresa = '𝐂𝐫𝐢𝐬𝐭𝐢𝐚𝐧 - 𝐒𝐞𝐫𝐯𝐢𝐜𝐢𝐨𝐬 𝐓𝐞𝐜𝐧𝐨𝐥𝐨́𝐠𝐢𝐜𝐨𝐬'
+  const instagramUrl = 'https://www.instagram.com/bki_hm66'
 
   const vcard = `
 BEGIN:VCARD
@@ -29,55 +31,33 @@ X-ABLabel:Correo Electrónico
 X-ABLabel:Teléfono de contacto
 X-WA-BIZ-NAME:${name}
 X-WA-BIZ-DESCRIPTION:${about}
-END:VCARD`.trim();
+END:VCARD`.trim()
 
-  const textbot = '𝐒𝐡𝐚𝐝𝐨𝐰 𝐁𝐨𝐭 🍷';
-  const dev = 'Cristian';
+  const textbot = '🍷 𝐒𝐡𝐚𝐝𝐨𝐰 𝐁𝐨𝐭 🍷'
+  const dev = 'Cristian'
 
-  await conn.sendMessage(
-    m.chat,
-    {
-contextInfo: {
-  externalAdReply: {
-    title: '🍷 𝐒𝐡𝐚𝐝𝐨𝐰 𝐁𝐨𝐭 🍷',
-    body: '🍷 𝑺𝒉𝒂𝒅𝒐𝒘 𝑩𝒐𝒕 🍷',
-    mediaType: 1,
-    thumbnailUrl: 'https://files.catbox.moe/iydxk1.jpg',
-    renderLargerThumbnail: false,
-    sourceUrl: ''
-  }
-},
-
-      contacts: {
-        displayName: name,
-        contacts: [{ vcard }]
-      },
-      contextInfo: {
-        mentionedJid: [m.sender],
-        isForwarded: true,
-        forwardingScore: 999,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: 'Alee'.id,
-          newsletterName: 'Alee'.name,
-          serverMessageId: -1,
-        },
-        externalAdReply: {
-          title: textbot,
-          body: dev,
-          thumbnailUrl: imageUrl,
-          sourceUrl: instagramUrl,
-          mediaType: 1,
-          showAdAttribution: true,
-          renderLargerThumbnail: true,
-        },
-      }
+  await conn.sendMessage(m.chat, {
+    contacts: {
+      displayName: name,
+      contacts: [{ vcard }]
     },
-    { quoted: m }
-  );
+    contextInfo: {
+      mentionedJid: [m.sender],
+      isForwarded: true,
+      forwardingScore: 999,
+      externalAdReply: {
+        title: textbot,
+        body: dev,
+        thumbnailUrl: imageUrl,
+        sourceUrl: instagramUrl,
+        mediaType: 1,
+        showAdAttribution: true,
+        renderLargerThumbnail: true
+      }
+    }
+  }, { quoted: m })
 }
 
-
-handler.customPrefix = /^(owner|creador)$/i;
-handler.command = new RegExp;
-
-export default handler;
+handler.customPrefix = /^(owner|creador)$/i
+handler.command = new RegExp
+export default handler
