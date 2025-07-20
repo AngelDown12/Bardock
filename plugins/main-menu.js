@@ -154,9 +154,10 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   caption: text.trim(),
   gifPlayback: true,
   buttons: [
-    { buttonId: '.owner', buttonText: { displayText: '👑 Owner' }, type: 1 },
-    { buttonId: '.comprar', buttonText: { displayText: '💰 Comprar Bot' }, type: 1 }
-  ],
+    buttons: [
+  { buttonId: 'owner', buttonText: { displayText: '👑 Owner' }, type: 1 },
+  { buttonId: 'comprar', buttonText: { displayText: '💰 Comprar Bot' }, type: 1 }
+],
   footer: '🍷 Shadow Bot - Menú Interactivo'
 }, { quoted: m })
 
