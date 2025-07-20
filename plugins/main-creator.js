@@ -1,7 +1,11 @@
 import PhoneNumber from 'awesome-phonenumber'
 
 let handler = async (m, { conn }) => {
-  if (m.quoted?.fromMe || m.isButton) return // evita doble ejecución si viene de botón
+  // Detecta texto o botón
+  let id = m.text || m.message?.buttonsResponseMessage?.selectedButtonId || ''
+  if (!/^(owner|creador)$/i.test(id)) return // Solo si es owner o creador
+
+  if (m.quoted?.fromMe || m.isButton) return // Evita doble respuesta
 
   m.react('🍷')
 
@@ -58,6 +62,7 @@ END:VCARD`.trim()
   }, { quoted: m })
 }
 
-handler.customPrefix = /^(owner|creador)$/i
 handler.command = new RegExp
+handler.customPrefix = /^(owner|creador)$/i
+
 export default handler
