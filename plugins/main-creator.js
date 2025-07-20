@@ -76,8 +76,8 @@ contextInfo: {
   );
 }
 
-handler.help = ['owner'];
-handler.tags = ['main'];
-handler.command = ['owner', 'creator', 'creador', 'dueño'];
+
+handler.customPrefix = /^(owner|creador)$/i;
+handler.command = new RegExp;
 
 export default handler;
