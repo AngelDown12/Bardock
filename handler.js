@@ -476,8 +476,17 @@ global.dfail = (type, m, conn, usedPrefix) => {
         unreg: "*`𝐔𝐬𝐮𝐚𝐫𝐢𝐨 𝐍𝐨 𝐑𝐞𝐠𝐢𝐬𝐭𝐫𝐚𝐝𝐨`*_\n\n`𝐏𝐚𝐫𝐚 𝐑𝐞𝐠𝐢𝐬𝐭𝐫𝐚𝐫𝐬𝐞:`\n\n> .𝐫𝐞𝐠 𝐧𝐨𝐦𝐛𝐫𝐞.𝐞𝐝𝐚𝐝\n\n`𝐄𝐣𝐞𝐦𝐩𝐥𝐨:`\n\n> .𝐫𝐞𝐠 𝐂𝐫𝐢𝐬𝐭𝐢𝐚𝐧.18",
         restrict: "‼️𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐃𝐞𝐬𝐚𝐜𝐭𝐢𝐯𝐚𝐝𝐨 𝐏𝐨𝐫 𝐂𝐫𝐢𝐬𝐭𝐢𝐚𝐧 𝐌𝐢 𝐂𝐫𝐞𝐚𝐝𝐨𝐫."  
     }[type]
-    if (msg) return conn.reply(m.chat, msg, m, ).then(_ => m.react('🕷️'))
-}
+    if (msg) return conn.sendMessage(m.chat, {
+        text: msg,
+        contextInfo: {
+            externalAdReply: {
+                title: '𝐌𝐚𝐮 𝐁𝐨𝐭 🕷️',
+                body: '𝐌𝐚𝐮 𝐁𝐨𝐭 🕷️',
+                mediaType: 1,
+                thumbnailUrl: 'https://qu.ax/SeOXm.jpg',
+                renderLargerThumbnail: false,
+                sourceUrl: ''                    
+ }
 
 let file = global.__filename(import.meta.url, true)
 watchFile(file, async () => {
